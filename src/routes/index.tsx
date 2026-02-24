@@ -3,6 +3,8 @@ import { LoginPage } from "../pages/LoginPage";
 import { RegisterPage } from "../pages/RegisterPage";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
+import { HomePage } from "../pages/HomePage";
+import { Layout } from "../shared/components/Layout";
 
 export const AppRoutes = () => {
   return (
@@ -12,7 +14,11 @@ export const AppRoutes = () => {
         <Route path="/register" element={<RegisterPage />} />
       </Route>
 
-      <Route element={<PrivateRoute />}></Route>
+      <Route element={<PrivateRoute />}>
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+        </Route>
+      </Route>
 
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
