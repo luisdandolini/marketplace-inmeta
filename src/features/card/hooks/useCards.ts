@@ -6,9 +6,9 @@ import {
 } from "@tanstack/react-query";
 import { cardService } from "../services/cardService";
 
-export const useCards = () => {
+export const useCards = (context: string = "all") => {
   return useInfiniteQuery({
-    queryKey: ["cards"],
+    queryKey: ["cards", context],
     queryFn: ({ pageParam = 1 }) => cardService.getCards(pageParam),
     initialPageParam: 1,
     getNextPageParam: (lastPage) =>
@@ -21,14 +21,6 @@ export const useMyCards = () => {
   return useQuery({
     queryKey: ["my-cards"],
     queryFn: cardService.getMyCards,
-  });
-};
-
-export const useAllCards = () => {
-  return useQuery({
-    queryKey: ["all-cards"],
-    queryFn: cardService.getAllCards,
-    staleTime: 1000 * 60 * 10,
   });
 };
 
