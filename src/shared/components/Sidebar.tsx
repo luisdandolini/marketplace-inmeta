@@ -48,7 +48,11 @@ const MENU_ITEMS: MenuItem[] = [
   {
     label: "Trocas",
     icon: <IterationCcw className="w-4 h-4" />,
-    subItems: [{ label: "Criar Troca", path: "/trocas/nova" }],
+    subItems: [
+      { label: "Marketplace", path: "/trocas" },
+      { label: "Minhas Trocas", path: "/trocas/minhas-trocas" },
+      { label: "Criar Troca", path: "/trocas/nova" },
+    ],
   },
 ];
 
