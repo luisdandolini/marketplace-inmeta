@@ -2,6 +2,7 @@ import {
   Book,
   ChevronDown,
   ChevronsLeft,
+  IterationCcw,
   LayoutDashboard,
   LogOut,
 } from "lucide-react";
@@ -43,6 +44,11 @@ const MENU_ITEMS: MenuItem[] = [
       { label: "Explorar Cartas", path: "/cartas/explorar-cartas" },
       { label: "Adicionar Cartas", path: "/cartas/adicionar-cartas" },
     ],
+  },
+  {
+    label: "Trocas",
+    icon: <IterationCcw className="w-4 h-4" />,
+    subItems: [{ label: "Criar Troca", path: "/trocas/nova" }],
   },
 ];
 

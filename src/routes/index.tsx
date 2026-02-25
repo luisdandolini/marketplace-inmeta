@@ -8,6 +8,7 @@ import { Layout } from "../shared/components/Layout";
 import { MyCardsPage } from "../pages/MyCardsPage";
 import { AllCardsPage } from "../pages/AllCardsPage";
 import { AddCardsPage } from "../pages/AddCardsPage";
+import { CreateTradePage } from "../pages/CreateTradePage";
 
 export const AppRoutes = () => {
   return (
@@ -23,6 +24,7 @@ export const AppRoutes = () => {
           <Route path="/cartas/minhas-cartas" element={<MyCardsPage />} />
           <Route path="/cartas/explorar-cartas" element={<AllCardsPage />} />
           <Route path="/cartas/adicionar-cartas" element={<AddCardsPage />} />
+          <Route path="/trocas/nova" element={<CreateTradePage />} />
         </Route>
       </Route>
 
