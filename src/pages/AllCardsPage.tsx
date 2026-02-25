@@ -4,7 +4,7 @@ import { LoadingState } from "../shared/components/LoadingState";
 
 export const AllCardsPage = () => {
   const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } =
-    useCards();
+    useCards("explore");
 
   const cards = data?.pages.flatMap((page) => page.list) ?? [];
 
@@ -20,6 +20,7 @@ export const AllCardsPage = () => {
           hasNextPage={hasNextPage}
           isFetchingNextPage={isFetchingNextPage}
           onLoadMore={fetchNextPage}
+          isLoading
         />
       )}
     </div>

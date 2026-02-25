@@ -17,7 +17,7 @@ export const MyCardsPage = () => {
       {isLoading ? (
         <LoadingState message="Carregando suas cartas..." />
       ) : (
-        <CardList cards={myCards} />
+        <CardList cards={myCards} isLoading />
       )}
     </div>
   );
