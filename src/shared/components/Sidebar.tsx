@@ -1,4 +1,5 @@
 import {
+  Book,
   ChevronDown,
   ChevronsLeft,
   LayoutDashboard,
@@ -32,6 +33,15 @@ const MENU_ITEMS: MenuItem[] = [
     label: "Home",
     icon: <LayoutDashboard className="w-4 h-4" />,
     path: "/",
+  },
+  {
+    label: "Cartas",
+    icon: <Book className="w-4 h-4" />,
+    subItems: [
+      { label: "Minhas Cartas", path: "/cartas/minhas-cartas" },
+      { label: "Explorar Cartas", path: "/cartas/explorar-cartas" },
+      { label: "Adicionar Cartas", path: "/cartas/adicionar-cartas" },
+    ],
   },
 ];
 
