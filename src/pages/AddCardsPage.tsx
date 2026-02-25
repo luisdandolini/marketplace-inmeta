@@ -86,7 +86,7 @@ export const AddCardsPage = () => {
           hasNextPage={hasNextPage}
           isFetchingNextPage={isFetchingNextPage}
           onLoadMore={fetchNextPage}
-          isLoading
+          isLoading={isLoading}
         />
       )}
     </div>
