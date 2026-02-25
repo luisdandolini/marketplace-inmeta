@@ -24,6 +24,14 @@ export const useMyCards = () => {
   });
 };
 
+export const useAllCards = () => {
+  return useQuery({
+    queryKey: ["all-cards"],
+    queryFn: cardService.getAllCards,
+    staleTime: 1000 * 60 * 10,
+  });
+};
+
 export const useAddCards = () => {
   const queryClient = useQueryClient();
 
