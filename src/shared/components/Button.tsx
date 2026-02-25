@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 const buttonVariants = cva(
-  "rounded-md py-2 px-4 text-sm font-medium transition-opacity disabled:opacity-50 cursor-pointer",
+  "inline-flex items-center justify-center gap-2 rounded-md py-2 px-4 text-sm font-medium transition-opacity disabled:opacity-50 cursor-pointer",
   {
     variants: {
       variant: {
@@ -25,13 +25,25 @@ const buttonVariants = cva(
 interface ButtonProps
   extends
     React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+    VariantProps<typeof buttonVariants> {
+  icon?: React.ReactNode;
+  iconPosition?: "left" | "right";
+}
 
-export const Button = ({ variant, size, className, ...props }: ButtonProps) => {
+export const Button = ({
+  variant,
+  size,
+  className,
+  icon,
+  iconPosition = "left",
+  children,
+  ...props
+}: ButtonProps) => {
   return (
-    <button
-      className={buttonVariants({ variant, size, className })}
-      {...props}
-    />
+    <button className={buttonVariants({ variant, size, className })} {...props}>
+      {icon && iconPosition === "left" && icon}
+      {children}
+      {icon && iconPosition === "right" && icon}
+    </button>
   );
 };
