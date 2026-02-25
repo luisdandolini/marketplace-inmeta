@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { LoadingState } from "../shared/components/LoadingState";
 import { Button } from "../shared/components/Button";
 import {
@@ -12,12 +12,35 @@ import { useToast } from "../shared/components/ToastContext";
 
 export const AddCardsPage = () => {
   const { showToast } = useToast();
-  const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } =
-    useCards();
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useCards("add-cards");
   const { data: myCards = [] } = useMyCards();
   const { mutate: addCards, isPending } = useAddCards();
-
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
+
+  const availableCards = useMemo(() => {
+    const allLoadedCards = data?.pages.flatMap((page) => page.list) ?? [];
+    return allLoadedCards.filter(
+      (card) => !myCards.some((myCard) => myCard.id === card.id),
+    );
+  }, [data, myCards]);
+
+  useEffect(() => {
+    if (
+      !isLoading &&
+      availableCards.length === 0 &&
+      hasNextPage &&
+      !isFetchingNextPage
+    ) {
+      fetchNextPage();
+    }
+  }, [
+    availableCards.length,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    fetchNextPage,
+  ]);
 
   const handleSelect = (card: Card) => {
     setSelectedIds((prev) =>
@@ -28,15 +51,13 @@ export const AddCardsPage = () => {
   };
 
   const handleAdd = () => {
-    addCards(selectedIds);
-    showToast("Cartas adicionadas com sucesso!");
+    addCards(selectedIds, {
+      onSuccess: () => {
+        showToast("Cartas adicionadas com sucesso!");
+        setSelectedIds([]);
+      },
+    });
   };
-
-  const allCards = data?.pages.flatMap((page) => page.list) ?? [];
-
-  const availableCards = allCards.filter(
-    (card) => !myCards.some((myCard) => myCard.id === card.id),
-  );
 
   return (
     <div className="flex flex-col gap-6">
@@ -47,14 +68,12 @@ export const AddCardsPage = () => {
             {selectedIds.length} carta(s) selecionada(s)
           </p>
         </div>
-        <div className="flex gap-3">
-          <Button
-            onClick={handleAdd}
-            disabled={selectedIds.length === 0 || isPending}
-          >
-            {isPending ? "Adicionando..." : "Adicionar"}
-          </Button>
-        </div>
+        <Button
+          onClick={handleAdd}
+          disabled={selectedIds.length === 0 || isPending}
+        >
+          {isPending ? "Adicionando..." : "Adicionar"}
+        </Button>
       </div>
 
       {isLoading ? (
@@ -67,6 +86,7 @@ export const AddCardsPage = () => {
           hasNextPage={hasNextPage}
           isFetchingNextPage={isFetchingNextPage}
           onLoadMore={fetchNextPage}
+          isLoading
         />
       )}
     </div>
