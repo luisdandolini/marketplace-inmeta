@@ -12,6 +12,7 @@ interface CardListProps {
   hasNextPage?: boolean;
   isFetchingNextPage?: boolean;
   onLoadMore?: () => void;
+  isLoading: boolean;
 }
 
 export const CardList = ({
@@ -21,6 +22,7 @@ export const CardList = ({
   hasNextPage,
   isFetchingNextPage,
   onLoadMore,
+  isLoading,
 }: CardListProps) => {
   const loaderRef = useInfiniteScroll({
     onIntersect: () => {
@@ -31,7 +33,7 @@ export const CardList = ({
     enabled: !!hasNextPage && !isFetchingNextPage,
   });
 
-  if (cards.length === 0) {
+  if (!isLoading && cards.length === 0) {
     return (
       <EmptyState
         icon={<LayoutGrid size={32} />}
