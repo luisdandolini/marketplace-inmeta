@@ -8,6 +8,7 @@ import {
 import { useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../features/auth/store/authStore";
+import { useMe } from "../../features/me/hooks/useMe";
 
 interface SubItem {
   label: string;
@@ -46,7 +47,8 @@ const MENU_ITEMS: MenuItem[] = [
 ];
 
 export const Sidebar = () => {
-  const { clearAuth, user } = useAuthStore();
+  const { clearAuth } = useAuthStore();
+  const { data: me } = useMe();
   const [collapsed, setCollapsed] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
 
@@ -105,10 +107,10 @@ export const Sidebar = () => {
         <div className="flex-1 min-w-0">
           {!collapsed ? (
             <p className="truncate whitespace-nowrap transition-all duration-300">
-              {user?.name}
+              {me?.name}
             </p>
           ) : (
-            <p className="text-center">{user?.name?.charAt(0).toUpperCase()}</p>
+            <p className="text-center">{me?.name?.charAt(0).toUpperCase()}</p>
           )}
         </div>
 
