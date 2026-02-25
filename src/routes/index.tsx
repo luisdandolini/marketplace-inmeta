@@ -5,6 +5,9 @@ import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 import { HomePage } from "../pages/HomePage";
 import { Layout } from "../shared/components/Layout";
+import { MyCardsPage } from "../pages/MyCardsPage";
+import { AllCardsPage } from "../pages/AllCardsPage";
+import { AddCardsPage } from "../pages/AddCardsPage";
 
 export const AppRoutes = () => {
   return (
@@ -17,6 +20,9 @@ export const AppRoutes = () => {
       <Route element={<PrivateRoute />}>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/cartas/minhas-cartas" element={<MyCardsPage />} />
+          <Route path="/cartas/explorar-cartas" element={<AllCardsPage />} />
+          <Route path="/cartas/adicionar-cartas" element={<AddCardsPage />} />
         </Route>
       </Route>
 
