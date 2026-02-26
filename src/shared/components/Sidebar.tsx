@@ -133,7 +133,7 @@ export const Sidebar = ({ collapsed, setCollapsed }: SidebarProps) => {
         </div>
         <button
           onClick={clearAuth}
-          className="shrink-0 hover:bg-background p-2 rounded"
+          className="cursor-pointer shrink-0 hover:bg-background p-2 rounded"
         >
           <LogOut className="w-5 h-5 text-red-400" />
         </button>
