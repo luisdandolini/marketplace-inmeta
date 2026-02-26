@@ -34,7 +34,7 @@ const MENU_ITEMS: MenuItem[] = [
   {
     label: "Home",
     icon: <LayoutDashboard className="w-4 h-4" />,
-    path: "/",
+    path: "/dashboard",
   },
   {
     label: "Cartas",
