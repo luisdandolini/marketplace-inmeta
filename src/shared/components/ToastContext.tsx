@@ -3,8 +3,10 @@ import {
   useContext,
   useState,
   useCallback,
+  useEffect,
   type ReactNode,
 } from "react";
+import { Check, X, AlertTriangle } from "lucide-react";
 
 type ToastType = "success" | "error" | "warning";
 
@@ -26,34 +28,49 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
   const showToast = useCallback(
     (message: string, type: ToastType = "success") => {
       const id = crypto.randomUUID();
-
       setToasts((prev) => [...prev, { id, message, type }]);
-
       setTimeout(() => {
-        setToasts((prev) => prev.filter((toast) => toast.id !== id));
+        setToasts((prev) => prev.filter((t) => t.id !== id));
       }, 3000);
     },
     [],
   );
 
+  useEffect(() => {
+    const handleApiError = (event: Event) => {
+      const customEvent = event as CustomEvent<string>;
+      showToast(customEvent.detail, "error");
+    };
+    window.addEventListener("api-error", handleApiError);
+    return () => window.removeEventListener("api-error", handleApiError);
+  }, [showToast]);
+
+  const ICONS = {
+    success: <Check size={14} strokeWidth={3} />,
+    error: <X size={14} strokeWidth={3} />,
+    warning: <AlertTriangle size={14} />,
+  };
+
+  const COLORS = {
+    success: "bg-primary",
+    error: "bg-red-500",
+    warning: "bg-yellow-500",
+  };
+
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      <div className="fixed top-4 right-4 z-50 flex flex-col gap-2">
+      <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2">
         {toasts.map((toast) => (
           <div
             key={toast.id}
             className={`
+              ${COLORS[toast.type]}
               px-4 py-3 rounded-lg shadow-lg text-white text-sm font-medium
-              animate-fade-in flex items-center gap-2 min-w-64
-              ${toast.type === "success" ? "bg-primary" : ""}
-              ${toast.type === "error" ? "bg-red-500" : ""}
-              ${toast.type === "warning" ? "bg-yellow-500" : ""}
+              flex items-center gap-2 min-w-64
             `}
           >
-            {toast.type === "success"}
-            {toast.type === "error"}
-            {toast.type === "warning"}
+            {ICONS[toast.type]}
             {toast.message}
           </div>
         ))}
