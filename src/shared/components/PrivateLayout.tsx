@@ -2,7 +2,7 @@ import { Breadcrumb } from "./Breadcrumb";
 import { Sidebar } from "./Sidebar";
 import { Outlet } from "react-router-dom";
 
-export const Layout = () => {
+export const PrivateLayout = () => {
   return (
     <div className="flex h-screen overflow-hidden bg-background">
       <Sidebar />
