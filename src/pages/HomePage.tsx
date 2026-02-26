@@ -69,10 +69,12 @@ export const HomePage = () => {
     <div className="flex flex-col gap-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-text">
+          <h1 className="text-lg md:text-2xl font-bold text-text">
             Bem vindo, {me?.name}!
           </h1>
-          <p className="text-text-muted mt-1">O que você quer fazer hoje?</p>
+          <p className="text-xs md:text-base text-text-muted mt-1">
+            O que você quer fazer hoje?
+          </p>
         </div>
         <Button
           onClick={() => navigate("/trocas/nova")}
