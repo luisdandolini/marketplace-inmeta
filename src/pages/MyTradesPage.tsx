@@ -8,6 +8,7 @@ import { ArrowRightLeft, Plus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useMe } from "../features/me/hooks/useMe";
 import { useToast } from "../shared/components/ToastContext";
+import { BackToTop } from "../shared/components/BackToTop";
 
 export const MyTradesPage = () => {
   const navigate = useNavigate();
@@ -75,6 +76,8 @@ export const MyTradesPage = () => {
           </div>
         </div>
       )}
+
+      <BackToTop />
     </div>
   );
 };

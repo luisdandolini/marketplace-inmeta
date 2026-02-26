@@ -9,6 +9,7 @@ import {
 import type { Card } from "../features/card/types";
 import { CardList } from "../features/card/components/CardList";
 import { useToast } from "../shared/components/ToastContext";
+import { BackToTop } from "../shared/components/BackToTop";
 
 export const AddCardsPage = () => {
   const { showToast } = useToast();
@@ -89,6 +90,8 @@ export const AddCardsPage = () => {
           isLoading={isLoading}
         />
       )}
+
+      <BackToTop />
     </div>
   );
 };

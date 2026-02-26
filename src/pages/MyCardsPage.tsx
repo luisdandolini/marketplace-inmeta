@@ -1,6 +1,7 @@
 import { LoadingState } from "../shared/components/LoadingState";
 import { useMyCards } from "../features/card/hooks/useCards";
 import { CardList } from "../features/card/components/CardList";
+import { BackToTop } from "../shared/components/BackToTop";
 
 export const MyCardsPage = () => {
   const { data: myCards = [], isLoading } = useMyCards();
@@ -19,6 +20,8 @@ export const MyCardsPage = () => {
       ) : (
         <CardList cards={myCards} isLoading={isLoading} />
       )}
+
+      <BackToTop />
     </div>
   );
 };

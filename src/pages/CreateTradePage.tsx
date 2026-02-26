@@ -3,6 +3,7 @@ import { StepIndicator } from "../features/trades/components/StepIndicator";
 import { StepOne } from "../features/trades/components/StepOne";
 import { StepTwo } from "../features/trades/components/StepTwo";
 import { StepThree } from "../features/trades/components/StepThree";
+import { BackToTop } from "../shared/components/BackToTop";
 
 const STEPS = ["Suas cartas", "Cartas desejadas", "Confirmação"];
 
@@ -23,6 +24,8 @@ export const CreateTradePage = () => {
       {step === 1 && <StepOne />}
       {step === 2 && <StepTwo />}
       {step === 3 && <StepThree />}
+
+      <BackToTop />
     </div>
   );
 };

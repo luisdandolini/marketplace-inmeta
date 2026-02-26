@@ -1,5 +1,6 @@
 import { CardList } from "../features/card/components/CardList";
 import { useCards } from "../features/card/hooks/useCards";
+import { BackToTop } from "../shared/components/BackToTop";
 import { LoadingState } from "../shared/components/LoadingState";
 
 export const AllCardsPage = () => {
@@ -23,6 +24,8 @@ export const AllCardsPage = () => {
           isLoading={isLoading}
         />
       )}
+
+      <BackToTop />
     </div>
   );
 };

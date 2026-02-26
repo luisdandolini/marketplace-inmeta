@@ -4,6 +4,7 @@ import { LoadingState } from "../shared/components/LoadingState";
 import { EmptyState } from "../shared/components/EmptyState";
 import { useInfiniteScroll } from "../shared/hooks/useInfiniteScroll";
 import { ArrowRightLeft } from "lucide-react";
+import { BackToTop } from "../shared/components/BackToTop";
 
 export const TradesPage = () => {
   const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } =
@@ -43,6 +44,8 @@ export const TradesPage = () => {
           </div>
         </div>
       )}
+
+      <BackToTop />
     </div>
   );
 };
