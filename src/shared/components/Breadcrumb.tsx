@@ -23,7 +23,7 @@ export const Breadcrumb = () => {
   });
 
   return (
-    <nav className="flex items-center gap-1 text-sm text-text-muted mb-6">
+    <nav className="flex items-center gap-1 text-sm text-text-muted md:mb-2">
       <span>Home</span>
 
       {crumbs.map((crumb) => (
