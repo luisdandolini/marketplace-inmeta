@@ -17,7 +17,7 @@ export const LoginPage = () => {
         <LoginForm />
         <p className="text-sm text-text-muted">
           Não tem uma conta?{" "}
-          <Link to="/register" className="text-primary hover:underline">
+          <Link to="/registro" className="text-primary hover:underline">
             Criar conta
           </Link>
         </p>
