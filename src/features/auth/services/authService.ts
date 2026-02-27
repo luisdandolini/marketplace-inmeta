@@ -13,7 +13,7 @@ export const authService = {
   },
 
   register: async (data: RegisterRequest): Promise<RegisterResponse> => {
-    const response = await api.post<RegisterResponse>("/registro", data);
+    const response = await api.post<RegisterResponse>("/register", data);
     return response.data;
   },
 };
