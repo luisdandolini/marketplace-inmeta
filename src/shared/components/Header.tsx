@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "./Button";
+import { ThemeToggle } from "./ThemeToggle";
 
 export const Header = () => {
   return (
@@ -13,12 +14,13 @@ export const Header = () => {
       </Link>
 
       <nav className="flex items-center gap-3">
+        <ThemeToggle />
         <Link to="/login">
           <Button variant="outline" size="sm">
             Entrar
           </Button>
         </Link>
-        <Link to="/registro">
+        <Link to="/register">
           <Button size="sm">Criar conta</Button>
         </Link>
       </nav>

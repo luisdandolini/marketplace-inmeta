@@ -10,6 +10,7 @@ import { useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuthStore } from "../../features/auth/store/authStore";
 import { useMe } from "../../features/me/hooks/useMe";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface SubItem {
   label: string;
@@ -126,14 +127,18 @@ export const Sidebar = ({ collapsed, setCollapsed }: SidebarProps) => {
       <div className="flex items-center gap-3 p-4 border-t border-background text-sm font-medium">
         <div className="flex-1 min-w-0">
           {!collapsed ? (
-            <p className="truncate">{me?.name}</p>
+            <p className="truncate whitespace-nowrap">{me?.name}</p>
           ) : (
             <p className="text-center">{me?.name?.charAt(0).toUpperCase()}</p>
           )}
         </div>
+
+        {!collapsed && <ThemeToggle />}
+
         <button
           onClick={clearAuth}
-          className="cursor-pointer shrink-0 hover:bg-background p-2 rounded"
+          title="Sair"
+          className="shrink-0 cursor-pointer hover:bg-background p-2 rounded transition-colors"
         >
           <LogOut className="w-5 h-5 text-red-400" />
         </button>
