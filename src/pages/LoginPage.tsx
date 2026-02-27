@@ -8,11 +8,13 @@ export const LoginPage = () => {
       <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary opacity-20 rounded-full blur-3xl" />
       <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-secondary opacity-20 rounded-full blur-3xl" />
       <div className="relative z-10 bg-surface p-8 rounded-xl flex flex-col items-center gap-6 w-full max-w-sm">
-        <img
-          src="/app-icon.webp"
-          alt="Logo"
-          className="w-16 h-16 object-contain"
-        />
+        <Link to={"/"} className="cursor-pointer">
+          <img
+            src="/app-icon.webp"
+            alt="Logo"
+            className="w-16 h-16 object-contain"
+          />
+        </Link>
         <h1 className="text-2xl font-bold text-text">Entrar</h1>
         <LoginForm />
         <p className="text-sm text-text-muted">
