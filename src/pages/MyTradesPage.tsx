@@ -51,6 +51,9 @@ export const MyTradesPage = () => {
     fetchNextPage,
   ]);
 
+  const isInitializing =
+    isLoading || (myTrades.length === 0 && (isFetchingNextPage || hasNextPage));
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
@@ -69,7 +72,7 @@ export const MyTradesPage = () => {
         </Button>
       </div>
 
-      {isLoading ? (
+      {isInitializing ? (
         <LoadingState message="Carregando suas trocas..." />
       ) : myTrades.length === 0 ? (
         <EmptyState
