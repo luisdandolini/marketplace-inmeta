@@ -60,6 +60,10 @@ export const AddCardsPage = () => {
     });
   };
 
+  const isInitializing =
+    isLoading ||
+    (availableCards.length === 0 && (isFetchingNextPage || hasNextPage));
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
@@ -77,7 +81,7 @@ export const AddCardsPage = () => {
         </Button>
       </div>
 
-      {isLoading ? (
+      {isInitializing ? (
         <LoadingState message="Carregando cartas..." />
       ) : (
         <CardList
