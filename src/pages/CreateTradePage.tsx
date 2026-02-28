@@ -4,11 +4,16 @@ import { StepOne } from "../features/trades/components/StepOne";
 import { StepTwo } from "../features/trades/components/StepTwo";
 import { StepThree } from "../features/trades/components/StepThree";
 import { BackToTop } from "../shared/components/BackToTop";
+import { useEffect } from "react";
 
 const STEPS = ["Suas cartas", "Cartas desejadas", "Confirmação"];
 
 export const CreateTradePage = () => {
-  const { step } = useCreateTradeStore();
+  const { step, reset } = useCreateTradeStore();
+
+  useEffect(() => {
+    return () => reset();
+  }, [reset]);
 
   return (
     <div className="flex flex-col gap-4">
