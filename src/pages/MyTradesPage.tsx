@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useMe } from "../features/me/hooks/useMe";
 import { useToast } from "../shared/components/ToastContext";
 import { BackToTop } from "../shared/components/BackToTop";
+import { useEffect } from "react";
 
 export const MyTradesPage = () => {
   const navigate = useNavigate();
@@ -32,6 +33,23 @@ export const MyTradesPage = () => {
       onError: () => showToast("Erro ao deletar troca", "error"),
     });
   };
+
+  useEffect(() => {
+    if (
+      !isLoading &&
+      myTrades.length === 0 &&
+      hasNextPage &&
+      !isFetchingNextPage
+    ) {
+      fetchNextPage();
+    }
+  }, [
+    myTrades.length,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    fetchNextPage,
+  ]);
 
   return (
     <div className="flex flex-col gap-6">
