@@ -22,15 +22,19 @@ export const useCreateTradeStore = create<CreateTradeState>((set) => ({
 
   toggleOfferingCard: (card) =>
     set((state) => ({
-      offeringCards: state.offeringCards.some((card) => card.id === card.id)
-        ? state.offeringCards.filter((card) => card.id !== card.id)
+      offeringCards: state.offeringCards.some(
+        (existing) => existing.id === card.id,
+      )
+        ? state.offeringCards.filter((existing) => existing.id !== card.id)
         : [...state.offeringCards, card],
     })),
 
   toggleReceivingCard: (card) =>
     set((state) => ({
-      receivingCards: state.receivingCards.some((card) => card.id === card.id)
-        ? state.receivingCards.filter((card) => card.id !== card.id)
+      receivingCards: state.receivingCards.some(
+        (existing) => existing.id === card.id,
+      )
+        ? state.receivingCards.filter((existing) => existing.id !== card.id)
         : [...state.receivingCards, card],
     })),
 
