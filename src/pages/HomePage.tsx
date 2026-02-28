@@ -10,12 +10,19 @@ import {
   Plus,
   ArrowRight,
 } from "lucide-react";
+import { useEffect } from "react";
 
 export const HomePage = () => {
   const navigate = useNavigate();
   const { data: me } = useMe();
   const { data: myCards = [] } = useMyCards();
-  const { data: tradesData } = useTrades();
+  const {
+    data: tradesData,
+    isLoading,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+  } = useTrades();
 
   const allTrades = tradesData?.pages.flatMap((page) => page.list) ?? [];
   const myTrades = allTrades.filter((trade) => trade.userId === me?.id);
@@ -64,6 +71,29 @@ export const HomePage = () => {
       label: "Acessar marketplace",
     },
   ];
+
+  useEffect(() => {
+    if (
+      !isLoading &&
+      myTrades.length === 0 &&
+      hasNextPage &&
+      !isFetchingNextPage
+    ) {
+      fetchNextPage();
+    }
+  }, [
+    myTrades.length,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    fetchNextPage,
+  ]);
+
+  useEffect(() => {
+    if (!isLoading && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [hasNextPage, isFetchingNextPage, isLoading, fetchNextPage]);
 
   return (
     <div className="flex flex-col gap-8">
