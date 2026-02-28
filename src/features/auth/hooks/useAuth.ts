@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { authService } from "../services/authService";
 import { useAuthStore } from "../store/authStore";
 import type { LoginRequest, RegisterRequest } from "../types";
+import { useToast } from "../../../shared/components/ToastContext";
 
 export const useLogin = () => {
   const { setAuth } = useAuthStore();
@@ -19,11 +20,15 @@ export const useLogin = () => {
 
 export const useRegister = () => {
   const navigate = useNavigate();
+  const { showToast } = useToast();
 
   return useMutation({
     mutationFn: (data: RegisterRequest) => authService.register(data),
     onSuccess: () => {
       navigate("/login");
+      setTimeout(() => {
+        showToast("Conta criada com sucesso! Faça login para continuar.");
+      }, 200);
     },
   });
 };
