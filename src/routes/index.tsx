@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { LoginPage } from "../pages/LoginPage";
 import { RegisterPage } from "../pages/RegisterPage";
 import { PrivateRoute } from "./PrivateRoute";
@@ -13,6 +13,7 @@ import { CreateTradePage } from "../pages/CreateTradePage";
 import { TradesPage } from "../pages/TradesPage";
 import { MyTradesPage } from "../pages/MyTradesPage";
 import { MarketplacePage } from "../pages/MarketplacePage";
+import { NotFoundPage } from "../pages/NotFoundPage";
 
 export const AppRoutes = () => {
   return (
@@ -38,7 +39,7 @@ export const AppRoutes = () => {
         </Route>
       </Route>
 
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };
